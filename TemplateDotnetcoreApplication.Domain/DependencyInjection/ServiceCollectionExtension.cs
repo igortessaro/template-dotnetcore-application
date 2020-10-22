@@ -1,4 +1,4 @@
-﻿using template_dotnetcore_application.Domain.Services;
+﻿using TemplateDotnetcoreApplication.Domain.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

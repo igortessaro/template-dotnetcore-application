@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using template_dotnetcore_application.Domain.Dtos;
+using TemplateDotnetcoreApplication.Domain.Dtos;
 
-namespace template_dotnetcore_application.Domain.Gateways.GitLab
+namespace TemplateDotnetcoreApplication.Domain.Gateways.GitLab
 {
-    public interface IGitLabApi
+    public interface IGitLabApi: IHealthCheck
     {
         Task<YmlContentDto> GetCiYml(string key);
         Task<IList<YmlDto>> GetCiYmls();

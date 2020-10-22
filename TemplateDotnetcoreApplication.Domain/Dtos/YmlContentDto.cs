@@ -1,4 +1,4 @@
-﻿namespace template_dotnetcore_application.Domain.Dtos
+﻿namespace TemplateDotnetcoreApplication.Domain.Dtos
 {
     public sealed class YmlContentDto
     {

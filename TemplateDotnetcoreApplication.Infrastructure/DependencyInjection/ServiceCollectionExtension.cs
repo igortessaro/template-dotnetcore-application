@@ -1,6 +1,6 @@
 ﻿using System;
-using template_dotnetcore_application.Domain.Gateways.GitLab;
-using template_dotnetcore_application.Infrastructure.Gateways.GitLab;
+using TemplateDotnetcoreApplication.Domain.Gateways.GitLab;
+using TemplateDotnetcoreApplication.Infrastructure.Gateways.GitLab;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddHttpClient<IGitLabApi, GitLabApi>(client =>
             {
                 client.BaseAddress = _gitlabApiUri;
+                client.DefaultRequestHeaders.Add("PRIVATE-TOKEN", "kZWfLzWLSnKMjPi7mLW6");
             });
             // TODO: .AddPolicyHandler(GetRetryPolicy()).AddPolicyHandler(GetCircuitBreakerPolicy());
 

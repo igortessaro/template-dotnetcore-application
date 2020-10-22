@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace template_dotnetcore_application.Infrastructure.Gateways.Core
+namespace TemplateDotnetcoreApplication.Infrastructure.Gateways.Core
 {
     public class GatewayService
     {

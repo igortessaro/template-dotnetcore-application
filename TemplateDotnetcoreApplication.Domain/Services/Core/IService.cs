@@ -1,4 +1,4 @@
-﻿namespace template_dotnetcore_application.Domain.Services
+﻿namespace TemplateDotnetcoreApplication.Domain.Services
 {
     public interface IService
     {

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace template_dotnetcore_application.Api
+namespace TemplateDotnetcoreApplication.Api
 {
     public class Program
     {

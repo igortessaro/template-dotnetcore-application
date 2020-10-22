@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using template_dotnetcore_application.Domain.Services;
+using TemplateDotnetcoreApplication.Domain.Services;
 
-namespace template_dotnetcore_application.Api.Controllers
+namespace TemplateDotnetcoreApplication.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,17 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
-using template_dotnetcore_application.Domain.Dtos;
-using template_dotnetcore_application.Domain.Gateways.GitLab;
-using template_dotnetcore_application.Infrastructure.Gateways.Core;
+using TemplateDotnetcoreApplication.Domain.Dtos;
+using TemplateDotnetcoreApplication.Domain.Gateways.GitLab;
+using TemplateDotnetcoreApplication.Infrastructure.Gateways.Core;
 
-namespace template_dotnetcore_application.Infrastructure.Gateways.GitLab
+namespace TemplateDotnetcoreApplication.Infrastructure.Gateways.GitLab
 {
     public sealed class GitLabApi : GatewayService, IGitLabApi
     {
         public GitLabApi(HttpClient httpClient)
             : base(httpClient)
         {
+        }
+
+        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var gitlabVersion = await this.GetVersion();
+                Dictionary<string, object> result = new Dictionary<string, object>();
+                result.Add(nameof(gitlabVersion.Version), gitlabVersion.Version);
+                result.Add(nameof(gitlabVersion.Revision), gitlabVersion.Revision);
+                return HealthCheckResult.Healthy($"{nameof(GitLabApi)} healthy.", result.ToImmutableDictionary());
+            }
+            catch (Exception)
+            {
+                return HealthCheckResult.Unhealthy($"{nameof(GitLabApi)} unhealthy.");
+            }
         }
 
         public async Task<YmlContentDto> GetCiYml(string key)
@@ -35,6 +55,12 @@ namespace template_dotnetcore_application.Infrastructure.Gateways.GitLab
         public async Task<IList<GitIgnoreDto>> GetGitIgnories()
         {
             var result = await this.GetAsync<IList<GitIgnoreDto>>("templates/gitignores");
+            return result;
+        }
+
+        public async Task<GitLabVersionDto> GetVersion()
+        {
+            var result = await this.GetAsync<GitLabVersionDto>("version");
             return result;
         }
     }

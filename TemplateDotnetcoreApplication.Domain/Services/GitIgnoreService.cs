@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using template_dotnetcore_application.Domain.Dtos;
-using template_dotnetcore_application.Domain.Gateways.GitLab;
+using TemplateDotnetcoreApplication.Domain.Dtos;
+using TemplateDotnetcoreApplication.Domain.Gateways.GitLab;
 
-namespace template_dotnetcore_application.Domain.Services
+namespace TemplateDotnetcoreApplication.Domain.Services
 {
     public sealed class GitIgnoreService : IGitIgnoreService
     {

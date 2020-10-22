@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using template_dotnetcore_application.Domain.Dtos;
+using TemplateDotnetcoreApplication.Domain.Dtos;
 
-namespace template_dotnetcore_application.Domain.Services
+namespace TemplateDotnetcoreApplication.Domain.Services
 {
     public interface ICiYmlService : IService
     {

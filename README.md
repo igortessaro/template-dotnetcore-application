@@ -108,3 +108,9 @@ Toda classe de gateway deve terminar com o prefixo _Api_, ser selada e implement
 public sealed class {GatewayName}Api : {SolutionName}.Domain.Gateways.I{GatewayName}Api {}
 ```
 
+## Docker commands
+
+```
+$ docker build -t template-dotnetcore-application-api .
+
+```
