@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -11,8 +12,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Threading.Tasks;
-using TemplateDotnetcoreApplication.Api.HealthChecks;
 using TemplateDotnetcoreApplication.Domain.Gateways.GitLab;
+using TemplateDotnetcoreApplication.Domain.Repositories;
+using TemplateDotnetcoreApplication.Infrastructure.Repositories;
+using TemplateDotnetcoreApplication.Infrastructure.Repositories.Core;
 
 namespace TemplateDotnetcoreApplication.Api
 {
@@ -37,12 +40,17 @@ namespace TemplateDotnetcoreApplication.Api
 
             services.AddGateways();
             services.AddDomainServices();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
 
-            services.AddHealthChecks().AddCheck<IGitLabApi>("gitlab_api");
             services.AddHealthChecks()
-                .AddCheck("Foo", () => HealthCheckResult.Healthy("Foo is OK!"), tags: new[] { "foo_tag" })
-                //.AddCheck("Bar", () => HealthCheckResult.Unhealthy("Bar is unhealthy!"), tags: new[] { "bar_tag" })
-                .AddCheck("Baz", () => HealthCheckResult.Healthy("Baz is OK!"), tags: new[] { "baz_tag" });
+                .AddDbContextCheck<TemplateDbContext>()
+                .AddCheck<IGitLabApi>("gitlab_api");
+
+            services.AddDbContext<TemplateDbContext>(options =>
+            {
+                var conectionString = this.Configuration.GetConnectionString("TemplateDbConnection");
+                options.UseSqlServer(conectionString);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

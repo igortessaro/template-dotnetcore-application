@@ -13,9 +13,12 @@ namespace TemplateDotnetcoreApplication.Infrastructure.Gateways.GitLab
 {
     public sealed class GitLabApi : GatewayService, IGitLabApi
     {
+        private readonly string _baseUrl;
+
         public GitLabApi(HttpClient httpClient)
             : base(httpClient)
         {
+            _baseUrl = httpClient.BaseAddress.ToString();
         }
 
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
@@ -24,6 +27,7 @@ namespace TemplateDotnetcoreApplication.Infrastructure.Gateways.GitLab
             {
                 var gitlabVersion = await this.GetVersion();
                 Dictionary<string, object> result = new Dictionary<string, object>();
+                result.Add("url", _baseUrl);
                 result.Add(nameof(gitlabVersion.Version), gitlabVersion.Version);
                 result.Add(nameof(gitlabVersion.Revision), gitlabVersion.Revision);
                 return HealthCheckResult.Healthy($"{nameof(GitLabApi)} healthy.", result.ToImmutableDictionary());
