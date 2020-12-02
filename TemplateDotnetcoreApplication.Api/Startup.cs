@@ -38,7 +38,7 @@ namespace TemplateDotnetcoreApplication.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Template Dotnet Core Api", Version = "v1" });
             });
 
-            services.AddGateways();
+            services.AddGateways(this.Configuration);
             services.AddDomainServices();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
 
@@ -48,8 +48,14 @@ namespace TemplateDotnetcoreApplication.Api
 
             services.AddDbContext<TemplateDbContext>(options =>
             {
-                var conectionString = this.Configuration.GetConnectionString("TemplateDbConnection");
-                options.UseSqlServer(conectionString);
+                if (this.Configuration.GetSection("UseInMemoryDataBase").Get<bool>())
+                {
+                    options.UseInMemoryDatabase("dbInMemory");
+                }
+                else
+                {
+                    options.UseSqlServer(this.Configuration.GetConnectionString("TemplateDbConnection"));
+                }
             });
         }
 
