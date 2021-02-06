@@ -9,13 +9,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateDotnetcoreApplicati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateDotnetcoreApplication.Infrastructure", "TemplateDotnetcoreApplication.Infrastructure\TemplateDotnetcoreApplication.Infrastructure.csproj", "{715EA203-2807-4DB2-B263-5471FB74405C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2AE28427-EB40-47AF-92CC-9F313972E2AB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Solution Items", "0 - Solution Items", "{2AE28427-EB40-47AF-92CC-9F313972E2AB}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		Dockerfile = Dockerfile
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Services", "1 - Services", "{B0F53B8B-9614-45F9-9A98-34734049E453}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{DD35EB9E-260F-4BE9-9B50-632B14F7DCE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{F6436120-A057-451D-8C69-FF57D20E7165}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +44,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14DEE97E-5DE4-41DF-98B5-9B9CF76A54B8} = {B0F53B8B-9614-45F9-9A98-34734049E453}
+		{05170B9A-50E6-4132-B7D7-8A9B052F1ABC} = {DD35EB9E-260F-4BE9-9B50-632B14F7DCE5}
+		{715EA203-2807-4DB2-B263-5471FB74405C} = {F6436120-A057-451D-8C69-FF57D20E7165}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {24BA1D65-1486-497C-97EE-58C26AE5D758}

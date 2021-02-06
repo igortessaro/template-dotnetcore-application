@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 using System.Threading.Tasks;
 using TemplateDotnetcoreApplication.Domain.Services;
+using TemplateDotnetcoreApplication.Domain.ValueObjects;
 
 namespace TemplateDotnetcoreApplication.Api.Controllers
 {
@@ -15,6 +17,7 @@ namespace TemplateDotnetcoreApplication.Api.Controllers
             _gitIgnoreService = gitIgnoreService;
         }
 
+        [FeatureGate(Features.GetGitIgnoreFeature)]
         [HttpGet]
         public async Task<IActionResult> GetGitIgnories()
         {

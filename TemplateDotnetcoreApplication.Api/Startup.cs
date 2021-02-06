@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -32,6 +33,7 @@ namespace TemplateDotnetcoreApplication.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddFeatureManagement();
 
             services.AddSwaggerGen(c =>
             {
