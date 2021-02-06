@@ -80,6 +80,10 @@ namespace TemplateDotnetcoreApplication.Api
                 {
                     ResponseWriter = WriteResponse
                 });
+                endpoints.MapHealthChecks("/health/live", new HealthCheckOptions()
+                {
+                    Predicate = (_) => false
+                });
             });
 
             app.UseSwagger();
