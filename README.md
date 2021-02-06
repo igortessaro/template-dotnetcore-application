@@ -8,6 +8,14 @@
 {SolutionName}.Infrastructure
 ```
 
+## Technologies implemented:
+
+- ASP.NET Core 3.1 (with .NET Core 3.1)
+- .NET Core Native DI
+- Swagger UI
+- [.NET Core Microsoft.FeatureManagement 2.2](https://github.com/Azure/AppConfiguration)
+- [.NET Core HealthChecks 5.0](https://docs.microsoft.com/pt-br/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-5.0)
+
 ### `Domain`
 ---
 
